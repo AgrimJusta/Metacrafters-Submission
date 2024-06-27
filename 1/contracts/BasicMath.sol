@@ -10,8 +10,7 @@ contract BasicMath {
 
     // Subtraction
     function subtract(uint256 a, uint256 b) public pure returns (uint256) {
-        int c = a - b;
-        return c;
+        return a - b;
     }
 
     // Multiplication
