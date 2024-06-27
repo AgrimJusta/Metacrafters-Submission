@@ -111,3 +111,6 @@ To develop and test the VotingDApp you can use Remix IDE or you will need the fo
 - Truffle: Development framework for Ethereum.
 - Ganache: Personal blockchain for Ethereum development.
 - MetaMask: Browser extension for interacting with Ethereum.
+## Developer
+- **Author**: [Agrim Justa]
+- **Contact**: [agrimjusta@gmail.com]
