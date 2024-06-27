@@ -112,5 +112,5 @@ To develop and test the VotingDApp you can use Remix IDE or you will need the fo
 - Ganache: Personal blockchain for Ethereum development.
 - MetaMask: Browser extension for interacting with Ethereum.
 ## Developer
-- **Author**: [Agrim Justa]
-- **Contact**: [agrimjusta@gmail.com]
+- **Author**: Agrim Justa
+- **Contact**: agrimjusta@gmail.com
