@@ -32,5 +32,5 @@ The contract emits the following events:
 
 
 ## Developer
-- **Author**: [Agrim Justa]
-- **Contact**: [agrimjusta@gmail.com]
+- **Author**: Agrim Justa
+- **Contact**: agrimjusta@gmail.com
