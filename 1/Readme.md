@@ -75,5 +75,5 @@ Open your browser and navigate to http://localhost:3000 to access the calculator
 Open MetaMask and configure it to connect to your local Ganache blockchain (Custom RPC with http://localhost:8545 or http://localhost:7545).
 Import accounts from Ganache into MetaMask for testing.
 ## Developer
-- **Author**: [Agrim Justa]
-- **Contact**: [agrimjusta@gmail.com]
+- **Author**: Agrim Justa
+- **Contact**: agrimjusta@gmail.com
