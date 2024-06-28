@@ -1,116 +1,91 @@
-# VotingDApp
+# UniversityAttendance
 
 ## Overview
 
-VotingDApp is a simple decentralized application (dApp) built on the Ethereum blockchain that facilitates a secure and transparent voting process. The contract allows an administrator to register candidates and authorize voters, while voters can cast their votes for their preferred candidates. The results of the election are recorded and can be concluded by the administrator, ensuring that the voting process is both fair and verifiable.
+UniversityAttendance is a Solidity smart contract designed for managing student attendance on the Ethereum blockchain. The contract allows a designated teacher to add students, mark their attendance, and check their attendance status. This ensures transparency and accountability in managing university-level attendance records.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Contract Details](#contract-details)
-  - [Structs](#structs)
   - [State Variables](#state-variables)
+  - [Structs](#structs)
   - [Events](#events)
   - [Modifiers](#modifiers)
 - [Functions](#functions)
 - [Error Handling](#error-handling)
 - [Usage](#usage)
 - [Development](#development)
+- [Developer](#developer)
 
 ## Features
 
-- **Admin Functions**: 
-  - Register new candidates.
-  - Authorize voters.
-  - Conclude the election.
-
-- **Voter Functions**: 
-  - Cast a vote for a registered candidate.
+- **Teacher Functions**: 
+  - Add new students to the attendance record.
+  - Mark attendance for students.
   
 - **Security**:
-  - Ensure only authorized voters can vote.
-  - Prevent voters from voting more than once.
-  - Validate candidate IDs before voting.
+  - Restricts functions to only the designated teacher (onlyTeacher modifier).
+  - Validates student IDs and attendance status before updating.
 
 ## Contract Details
 
-### Structs
-
-- **Candidate**: 
-  - `id`: Unique identifier for the candidate.
-  - `name`: Name of the candidate.
-  - `voteCount`: Number of votes received.
-
-- **Voter**: 
-  - `isAuthorized`: Whether the voter is authorized to vote.
-  - `hasVoted`: Whether the voter has already voted.
-  - `candidateIdVotedFor`: The ID of the candidate the voter voted for.
-
 ### State Variables
 
-- **electionAdmin**: Address of the contract deployer (election administrator).
-- **electionTitle**: Title of the election.
-- **voterRegistry**: Mapping of voter addresses to their Voter structs.
-- **candidateList**: Array of candidates.
-- **voteCount**: Total number of votes cast.
+- **teacher**: Address of the teacher who deploys the contract and manages student attendance.
+- **studentCount**: Total number of students currently enrolled.
+
+### Structs
+
+- **Student**: 
+  - `id`: Unique identifier for the student.
+  - `name`: Name of the student.
+  - `present`: Boolean indicating whether the student is present or not.
 
 ### Events
 
-- **VoteReceived**: Emitted when a vote is cast, logging the candidate's name and their updated vote count.
-- **ElectionConcluded**: Emitted at the end of the election, logging each candidate's name and their final vote count.
+- **StudentAdded**: Emitted when a new student is successfully added, logging the student's ID and name.
+- **AttendanceMarked**: Emitted when attendance is marked for a student, logging the student's ID and their attendance status.
 
 ### Modifiers
 
-- **onlyAdmin**: Ensures that only the administrator can call certain functions.
+- **onlyTeacher**: Ensures that only the designated teacher can execute specific functions.
 
 ## Functions
 
-- **registerCandidate**: 
-  - Adds a new candidate to the election.
-  - Can only be called by the administrator.
+- **addStudent(string memory _name)**: 
+  - Adds a new student to the attendance record.
+  - Only callable by the designated teacher.
 
-- **authorizeVoter**: 
-  - Authorizes a voter to participate in the election.
-  - Can only be called by the administrator.
+- **markAttendance(uint _id, bool _present)**: 
+  - Marks the attendance of a student identified by `_id`.
+  - Only callable by the designated teacher.
 
-- **castVote**: 
-  - Allows an authorized voter to cast their vote for a candidate.
-  - Validates the voter's authorization, vote status, and candidate ID before allowing the vote.
-
-- **concludeElection**: 
-  - Ends the election and emits the results.
-  - Ensures the integrity of the vote count using an `assert` statement.
-  - Resets vote counts for future elections.
+- **checkAttendance(uint _id) public view returns (bool)**: 
+  - Retrieves the attendance status (present or not) of a student identified by `_id`.
 
 ## Error Handling
 
-- **revert**: Used to handle specific error conditions with custom error messages, such as:
-  - Voter is already authorized.
-  - Voter is not authorized to vote.
-  - Voter has already voted.
-  - Invalid candidate ID.
-
-- **require**: Ensures that certain conditions are met before executing functions, primarily used to restrict access to administrator-only functions.
-
-- **assert**: Used to validate internal errors and invariants, ensuring that the total votes counted match the sum of individual candidate votes.
+- **require**: Ensures that specific conditions are met before executing functions, such as valid student IDs and unique attendance markings.
 
 ## Usage
 
-1. **Deploy the Contract**: The contract is deployed by the election administrator who initializes the election with a title.
-2. **Register Candidates**: The administrator registers candidates using the `registerCandidate` function.
-3. **Authorize Voters**: The administrator authorizes voters using the `authorizeVoter` function.
-4. **Cast Votes**: Authorized voters cast their votes using the `castVote` function.
-5. **Conclude Election**: The administrator concludes the election using the `concludeElection` function, which emits the results and resets the vote counts for future elections.
+1. **Deploy the Contract**: Deploy the contract using a Solidity-compatible development environment or Remix IDE.
+2. **Add Students**: The teacher uses the `addStudent` function to register new students with their names.
+3. **Mark Attendance**: The teacher uses the `markAttendance` function to record student attendance with the appropriate status.
+4. **Check Attendance**: Anyone can use the `checkAttendance` function to view the current attendance status of a student.
 
 ## Development
 
-To develop and test the VotingDApp you can use Remix IDE or you will need the following tools:
+To develop and test the UniversityAttendance contract, you can use Remix IDE or you will need the following tools:
 
 - Solidity: Programming language for writing smart contracts.
 - Ethereum: Blockchain platform to deploy the contract.
 - Truffle: Development framework for Ethereum.
 - Ganache: Personal blockchain for Ethereum development.
 - MetaMask: Browser extension for interacting with Ethereum.
+
 ## Developer
+
 - **Author**: Agrim Justa
 - **Contact**: agrimjusta@gmail.com
